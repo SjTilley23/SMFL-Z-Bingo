@@ -1,13 +1,14 @@
-#ifndef __FILEHANDLER_H_INCLUDED__
-#define __FILEHANDLER_H_INCLUDED__
+#ifndef __FILEHANDLER_HPP_INCLUDED__
+#define __FILEHANDLER_HPP_INCLUDED__
 
 #include <iostream>
 #include <string>
 #include <map>
+#include <vector>
 
 class FileHandler {
     private:
-        std::map<int, std::string> currentMap;
+        std::vector<std::string> vecLine;
         std::string ConvertFromTxtFile(std::string fileToRead);
 
     public:
@@ -16,4 +17,4 @@ class FileHandler {
         void ClearTheMap();
         std::string GetMapByKey(int key);
 };
-#endif // __FILEHANDLER_H_INCLUDED__ 
+#endif // __FILEHANDLER_HPP_INCLUDED__ 

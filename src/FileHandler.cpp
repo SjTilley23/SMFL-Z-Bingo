@@ -8,9 +8,6 @@
 
 using namespace std;
 
-map<int, string> currentMap;
-
-
 string FileHandler::ConvertFromTxtFile(string txtToConvert) {
     
     vector<char> charVec;
@@ -29,16 +26,16 @@ string FileHandler::ConvertFromTxtFile(string txtToConvert) {
 void FileHandler::ReadFromTxtFileToMap(string fileToRead) {
     
     string lineRead;
-    pair<int, string> linePair;
-    int lineNumber = 0;
     
     ifstream ReadFile(fileToRead);  // Open the file and read to ReadFile
 
+    if (!ReadFile.good()) {
+        cout << "Error, File does not exist" << endl;
+        exit(1);
+    }
+
     while (getline(ReadFile, lineRead)) {
-        lineNumber++;
-        linePair.first = lineNumber;
-        linePair.second = lineRead;
-        currentMap.insert(linePair); // Reads each line into a map as an int string pair 
+        vecLine.push_back(lineRead);
     }
 
     ReadFile.close(); // Close the file
@@ -56,11 +53,17 @@ void FileHandler::WriteToFile(string fileToWriteTo, string whatToWrite) {
 } // End of Function
 
 void FileHandler::ClearTheMap() {
-    currentMap.clear();
+    vecLine.clear();
 } // End of Function
 
 string FileHandler::GetMapByKey(int key) {
-    return currentMap.at(key);
+    
+    if (key < vecLine.size() && key >= 0) {
+        return vecLine[key];
+    } else {
+        cout << "Error, Key not in Vec" << endl;
+        exit(1);
+    } 
 } // End of Function
 
 
