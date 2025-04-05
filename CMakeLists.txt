@@ -13,6 +13,6 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 include_directories(hpp)
-add_executable(main src/Main.cpp src/Bingo.cpp src/ButtonHandler.cpp src/FileHandler.cpp src/Graphics.cpp hpp/FileHandler.hpp)
+add_executable(main src/Main.cpp src/Bingo.cpp src/ButtonHandler.cpp src/FileHandler.cpp src/Graphics.cpp)
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)
