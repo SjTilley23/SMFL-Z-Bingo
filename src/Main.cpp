@@ -10,24 +10,45 @@ using namespace std;
 
 int main() {
     
-    FileHandler fileHandler;
-    fileHandler.ReadFromTxtFileToVec("txt/Descriptions.txt");
-    cout << fileHandler.GetVecByIndex(1) << endl;
-    fileHandler.ClearTheVec();
 
-    Visuals visuals;
-    sf::Window window = visuals.RenderWindow(400, 600);
-    window.setFramerateLimit(60);
+    Visuals visuals;                                    // Create Visuals object
+    sf::RenderWindow window = visuals.RenderWindow(400, 600); // Render a window
+    window.setFramerateLimit(60);                       // Set the framerate to 60
 
-    while (window.isOpen()) {
-        while (const std::optional event = window.pollEvent()) {
-            if (event->is<sf::Event::Closed>()) {
-                window.close();
+
+
+    // While the window is open
+    while (window.isOpen()) {  
+
+
+        // Every loop we check for an event using a while loop incase there are multiple.
+        while (const auto event = window.pollEvent()) {   
+            
+            if (event->is<sf::Event::Closed>()) {   // If the event is a close event
+                window.close();                     // Close the window
+
             }
+
+
+
+
         }
 
+        window.clear();   // Clear everything drawn from last frame
 
 
+        sf::Texture texture("textures/ButtonGradient.png");
+        texture.setSmooth(true);
+
+        sf::Sprite sprite(texture);
+        window.draw(sprite);
+
+
+
+
+
+
+        window.display(); // Display everything drawn this frame
     }
 
     return 0;

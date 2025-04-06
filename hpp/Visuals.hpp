@@ -7,7 +7,7 @@ class Visuals {
     private:
 
     public:
-        sf::Window RenderWindow(uint32_t width, uint32_t height);
+        sf::RenderWindow RenderWindow(uint32_t width, uint32_t height);
 };
 
 #endif // __GRAPHICS_HPP_INCLUDED__
