@@ -4,19 +4,20 @@
 #include "FileHandler.hpp"
 #include "Visuals.hpp"
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 using namespace std;
 
 int main() {
     
     FileHandler fileHandler;
-    fileHandler.ReadFromTxtFileToMap("txt/Descriptions.txt");
-    cout << fileHandler.GetMapByKey(1) << endl;
-    fileHandler.ClearTheMap();
-    return 0;
+    fileHandler.ReadFromTxtFileToVec("txt/Descriptions.txt");
+    cout << fileHandler.GetVecByIndex(1) << endl;
+    fileHandler.ClearTheVec();
 
     Visuals visuals;
-    sf::Window window = visuals.RenderWindow(800,600);    
+    sf::Window window = visuals.RenderWindow(400, 600);
+    window.setFramerateLimit(60);
 
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
@@ -24,5 +25,10 @@ int main() {
                 window.close();
             }
         }
+
+
+
     }
+
+    return 0;
 }

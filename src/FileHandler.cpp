@@ -8,28 +8,13 @@
 
 using namespace std;
 
-string FileHandler::ConvertFromTxtFile(string txtToConvert) {
-    
-    vector<char> charVec;
-    string txt;
-    
-    for (int i = 0; i < txtToConvert.size(); i++) {
-        
-        charVec.push_back(txtToConvert[i]); // Turns the text into a vector of it's characters
-        txt += charVec[i];                  // adds the char in the vector to a string
-    }
-
-    return txt;
-} // End of Function
-
-
-void FileHandler::ReadFromTxtFileToMap(string fileToRead) {
+void FileHandler::ReadFromTxtFileToVec(string fileToRead) {
     
     string lineRead;
     
     ifstream ReadFile(fileToRead);  // Open the file and read to ReadFile
 
-    if (!ReadFile.good()) {
+    if (!ReadFile.good()) { 
         cout << "Error, File does not exist" << endl;
         exit(1);
     }
@@ -52,16 +37,16 @@ void FileHandler::WriteToFile(string fileToWriteTo, string whatToWrite) {
     file.close();                 // Close the file
 } // End of Function
 
-void FileHandler::ClearTheMap() {
+void FileHandler::ClearTheVec() {
     vecLine.clear();
 } // End of Function
 
-string FileHandler::GetMapByKey(int key) {
+string FileHandler::GetVecByIndex(int Index) {
     
-    if (key < vecLine.size() && key >= 0) {
-        return vecLine[key];
+    if (Index < vecLine.size() && Index >= 0) {
+        return vecLine[Index];
     } else {
-        cout << "Error, Key not in Vec" << endl;
+        cout << "Error, Index not in Vec" << endl;
         exit(1);
     } 
 } // End of Function
