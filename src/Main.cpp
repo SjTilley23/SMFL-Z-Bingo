@@ -11,9 +11,12 @@ using namespace std;
 int main() {
     
 
-    Visuals visuals;                                    // Create Visuals object
-    sf::RenderWindow window = visuals.RenderWindow(400, 600); // Render a window
-    window.setFramerateLimit(60);                       // Set the framerate to 60
+    sf::RenderWindow window(
+        sf::VideoMode({400, 600}), "My Window", 
+            sf::Style::Default, sf::State::Windowed);
+
+    Visuals visuals(window);
+    window.setFramerateLimit(60);  // Set the framerate to 60
 
 
 
@@ -37,11 +40,7 @@ int main() {
         window.clear();   // Clear everything drawn from last frame
 
 
-        sf::Texture texture("textures/ButtonGradient.png");
-        texture.setSmooth(true);
-
-        sf::Sprite sprite(texture);
-        window.draw(sprite);
+        sf::FloatRect randomMapButton = visuals.DrawButton(10, 70, 100, 30);
 
 
 
