@@ -10,6 +10,7 @@ using namespace std;
 
 int main() {
     
+    sf::Vector2f mouseVec2f;
 
     sf::RenderWindow window(
         sf::VideoMode({400, 600}), "My Window", 
@@ -32,6 +33,13 @@ int main() {
 
             }
 
+            if (event->is<sf::Event::MouseButtonPressed>()) {
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+
+                    mouseVec2f = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
+                }
+            }
+
 
 
 
@@ -43,8 +51,11 @@ int main() {
         sf::FloatRect randomMapButton = visuals.DrawButton(10, 70, 100, 30);
 
 
-
-
+        if (randomMapButton.contains(mouseVec2f)) {
+            cout << "Testing" << endl;
+            mouseVec2f.x = 0;
+            mouseVec2f.y = 0;
+        }
 
 
         window.display(); // Display everything drawn this frame
