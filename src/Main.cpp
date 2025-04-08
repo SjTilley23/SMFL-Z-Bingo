@@ -5,20 +5,22 @@
 #include "Visuals.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include "ButtonHandler.hpp"
 
 using namespace std;
 
 int main() {
     
     sf::Vector2f mouseVec2f;
+    
 
     sf::RenderWindow window(
         sf::VideoMode({400, 600}), "My Window", 
             sf::Style::Default, sf::State::Windowed);
 
-    Visuals visuals(window);
-    window.setFramerateLimit(60);  // Set the framerate to 60
 
+    window.setFramerateLimit(15);  // Set the framerate to 15
+    ButtonHandler buttonHandler(window);
 
 
     // While the window is open
@@ -45,17 +47,10 @@ int main() {
 
         }
 
-        window.clear();   // Clear everything drawn from last frame
+        window.clear(sf::Color(220,220,220));   // Clear everything drawn from last frame
 
 
-        sf::FloatRect randomMapButton = visuals.DrawButton(10, 70, 100, 30);
 
-
-        if (randomMapButton.contains(mouseVec2f)) {
-            cout << "Testing" << endl;
-            mouseVec2f.x = 0;
-            mouseVec2f.y = 0;
-        }
 
 
         window.display(); // Display everything drawn this frame
