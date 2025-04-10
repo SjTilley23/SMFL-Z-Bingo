@@ -1,9 +1,3 @@
-#include <string>
-#include <algorithm>
-#include <map>
-#include <fstream>
-#include <vector>
-#include <iomanip>
 #include "FileHandler.hpp"
 
 using namespace std;
@@ -14,13 +8,14 @@ void FileHandler::ReadFromTxtFileToVec(string fileToRead) {
     
     ifstream ReadFile(fileToRead);  // Open the file and read to ReadFile
 
+    
     if (!ReadFile.good()) { 
-        cout << "Error, File does not exist" << endl;
+        cout << "Error, File does not exist" << endl; // Spits an error and exists if the file does not exist
         exit(1);
     }
 
-    while (getline(ReadFile, lineRead)) {
-        vecLine.push_back(lineRead);
+    while (getline(ReadFile, lineRead)) {   // while there is a next line in the file
+        vecLine.push_back(lineRead);        // read the line into the class vector
     }
 
     ReadFile.close(); // Close the file
@@ -43,11 +38,11 @@ void FileHandler::ClearTheVec() {
 
 string FileHandler::GetVecByIndex(int Index) {
     
-    if (Index < vecLine.size() && Index >= 0) {
-        return vecLine[Index];
+    if (Index < vecLine.size() && Index >= 0) {     // checks if the index is actually in the Vector
+        return vecLine[Index];                      // Returns the element at the specified index
     } else {
-        cout << "Error, Index not in Vec" << endl;
-        exit(1);
+        cout << "Error, Index not in Vec" << endl;  // outs an error if it's not an idex in the Vec 
+        exit(1);                                    // exits the program
     } 
 } // End of Function
 

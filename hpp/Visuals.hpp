@@ -6,15 +6,17 @@
 
 class Visuals {
     private:
-        uint32_t width;
-        uint32_t height;
-        // std::vector<ButtonHandler> buttonVector;
+        uint32_t width;   // Width variable for use with buttons
+        uint32_t height;  // Height variable for use with buttons
 
     public:
-        sf::RenderWindow& window;
-        Visuals(sf::RenderWindow& window);
-        Visuals(sf::RenderWindow& window, uint32_t widthi, uint32_t heighti);
-        void RenderWindow();
-        sf::ConvexShape DrawButton(float position_x, float position_y, float width, float height);
+        sf::RenderWindow& window;           // reference to a ReferenceWindow object
+
+        Visuals(sf::RenderWindow& window);                                      // First of three constructors for just a window reference
+        Visuals(sf::RenderWindow& window, uint32_t widthi, uint32_t heighti);   // Second constructor for window reference, width, and height
+        void RenderWindow();                                                    // Empty default constructor
+
+        sf::ConvexShape DrawButton(float position_x, float position_y, float width, 
+            float height); // Draws a button on screen and returns the convex shape of it
 };
 #endif // __GRAPHICS_HPP_INCLUDED__
