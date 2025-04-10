@@ -4,23 +4,21 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
+#include <iostream>
 #include "Visuals.hpp"
-
-class Button;
 
 class ButtonHandler {
 
     private:
-    std::vector<Button> buttonsRendered;
-    sf::RenderWindow & window;
-    void AddToButtonVector(Button buttonToAdd);
+        Visuals& visuals;
+        const std::string uniqueIdentifier;
+        const int width;
+        const int height;
+        const int x;
+        const int y;
 
     public:
-    ButtonHandler(sf::RenderWindow & window_) : window(window_) { };
-    void CreateButton(float position_x, float position_y, float width, float height, std::string uniqueIdentifier);
-    std::vector<sf::FloatRect> GetButtonVector();
-    void ClearTheButtonVector();
-
+        ButtonHandler(Visuals& visuals, int widthi, int heighti, int xi, int yi, std::string uniqueIdentifieri);
 };
 
 

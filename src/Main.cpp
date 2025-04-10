@@ -1,26 +1,29 @@
-#include <map>
-#include <string>
-#include <iostream>
-#include "FileHandler.hpp"
-#include "Visuals.hpp"
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include "ButtonHandler.hpp"
+#include "Main.hpp"
 
 using namespace std;
+
+
+vector<ButtonHandler> main::GetButtonVector() {
+    return buttonVector;
+}
+
+void main::AddToButtonVector(ButtonHandler buttonHandler) {
+    buttonVector.push_back(buttonHandler);
+}
 
 int main() {
     
     sf::Vector2f mouseVec2f;
-    
 
+    int width = 400, height = 600;
     sf::RenderWindow window(
-        sf::VideoMode({400, 600}), "My Window", 
-            sf::Style::Default, sf::State::Windowed);
-
+        sf::VideoMode(sf::Vector2u(width, height)),
+        "Zombies Bingo",
+        sf::Style::Default,
+        sf::State::Windowed);
+    Visuals visuals(window, width, height);
 
     window.setFramerateLimit(15);  // Set the framerate to 15
-    ButtonHandler buttonHandler(window);
 
 
     // While the window is open
@@ -49,11 +52,22 @@ int main() {
 
         window.clear(sf::Color(220,220,220));   // Clear everything drawn from last frame
 
+        ButtonHandler buttonHandler(visuals, 10, 10, 200, 200, "blah");
 
+        // ButtonHandler buttonHandler;
+        // Button button(10, 10, 200, 200, "Back");
 
+        // buttonHandler.AddButtonToVector(button);
 
+        // for (Button button : buttonHandler.buttonVector) {
+        //     ConvexShape convexShape = visuals.DrawButton(button.x, button.y, button.width, button.height);
 
-        window.display(); // Display everything drawn this frame
+        //     if (convexShape.contains(mouseVec2f)) {
+        //         button.ispressed;
+        //     }
+        // }
+
+        window.display();
     }
 
     return 0;

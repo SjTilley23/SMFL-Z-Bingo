@@ -1,13 +1,15 @@
-#include <SFML/Graphics.hpp>
 #include "Visuals.hpp"
-#include "ButtonHandler.hpp"
 
+Visuals::Visuals(sf::RenderWindow& window)
+    : window(window) {}
 
-sf::ConvexShape Visuals::DrawButton(float position_x, float position_y, float width, float height, ) {
+Visuals::Visuals(sf::RenderWindow& window, uint32_t widthi, uint32_t heighti)
+    : window(window), width(widthi), height(heighti) {}
+
+sf::ConvexShape Visuals::DrawButton(float position_x, float position_y, float width, float height) {
     
     sf::ConvexShape button;
     sf::Texture texture;
-    ButtonHandler buttonHandler;
     button.setPointCount(10);
 
     button.setPoint(0, {position_x + (width/6), position_y + height});
