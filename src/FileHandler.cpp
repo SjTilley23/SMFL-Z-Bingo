@@ -43,7 +43,18 @@ string FileHandler::GetVecByIndex(int Index) {
     } else {
         cout << "Error, Index not in Vec" << endl;  // outs an error if it's not an idex in the Vec 
         exit(1);                                    // exits the program
-    } 
-} // End of Function
+    }
+}
+    
+
+int FileHandler::GetSizeOfVec() {
+    try {
+        return vecLine.size();
+    } catch (exception) {
+        cout << "There was an error with a vecline.size() call" << endl;
+        exit(1);
+    }
+   
+}
 
 

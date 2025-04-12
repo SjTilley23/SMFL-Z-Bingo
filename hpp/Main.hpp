@@ -12,10 +12,10 @@
 
 class main {
     private:
-        std::vector<ButtonHandler> buttonVector;
+        // std::vector<ButtonHandler> buttonVector;
     public:
-        std::vector<ButtonHandler> GetButtonVector();
-        void AddToButtonVector(ButtonHandler ButtonHandler);
+        // std::vector<ButtonHandler> GetButtonVector();
+        // void AddToButtonVector(ButtonHandler ButtonHandler);
 };
 
 

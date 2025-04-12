@@ -6,23 +6,35 @@
 #include <string>
 #include <iostream>
 #include "Visuals.hpp"
+#include "FileHandler.hpp"
 
-class ButtonHandler {
+class RandomButtons {
 
     private:
         Visuals& visuals;                   // Visuals reference object
-        const std::string uniqueIdentifier; // Unchangeable string to identify the button
         const int width;                    // Unchangeable width of the button
         const int height;                   // Unchangeable height of the button
         const int x;                        // Unchangeable x coord value of the button
         const int y;                        // Unchangeable y coord value of the button
+        sf::ConvexShape buttonRect;         // Button's shape for use to get .globalRect()
 
     public:
-        ButtonHandler(Visuals& visuals, int widthi, int heighti, int xi, 
-            int yi, std::string uniqueIdentifieri); // ButtonHandler's non-default constructor
+        RandomButtons(Visuals& visuals, int widthi, int heighti, int xi, 
+            int yi); // ButtonHandler's non-default constructor
+        std::pair<std::string, std::string> IsPressed(int uniqueIdentifier);
 };
 
+// class BackButtons {
 
+//     private:
+//     const int width;                    // Unchangeable width of the button
+//     const int height;                   // Unchangeable height of the button
+//     const int x;                        // Unchangeable x coord value of the button
+//     const int y;                        // Unchangeable y coord value of the button
+//     sf::ConvexShape buttonRect;         // Button's shape for use to get .globalRect()
+
+
+// };
 
 
 #endif // __BUTTONHANDLER_HPP_INCLUDED__ 

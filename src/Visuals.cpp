@@ -37,7 +37,7 @@ sf::ConvexShape Visuals::DrawButton(float position_x, float position_y, float wi
 
 
     static_cast<void>(texture.loadFromFile( // Opens a texture to our texture object
-        "C:\\Main\\Projects\\C++ Projects\\SFML-Z-Bingo\\SMFL-Z-Bingo\\textures\\ButtonGradient.png"));
+        "textures/ButtonGradient.png"));
     texture.setSmooth(true);      // Smooths the texture so the pixels aren't as visible
     button.setTexture(&texture);  // Sets the texture of the button to a reference to our texture
     window.draw(button);          // Draws the button into the window

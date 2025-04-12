@@ -3,13 +3,13 @@
 using namespace std;
 
 
-vector<ButtonHandler> main::GetButtonVector() {
-    return buttonVector;
-}
+// vector<ButtonHandler> main::GetButtonVector() {
+//     return buttonVector;
+// }
 
-void main::AddToButtonVector(ButtonHandler buttonHandler) {
-    buttonVector.push_back(buttonHandler);
-}
+// void main::AddToButtonVector(ButtonHandler buttonHandler) {
+//     buttonVector.push_back(buttonHandler);
+// }
 
 int main() {
     
@@ -52,7 +52,7 @@ int main() {
 
         window.clear(sf::Color(220,220,220));   // Clear everything drawn from last frame
 
-        ButtonHandler buttonHandler(visuals, 10, 10, 200, 200, "blah");
+        RandomButtons randomMapButton(visuals, 100, 20, 10, 10);
 
         // ButtonHandler buttonHandler;
         // Button button(10, 10, 200, 200, "Back");

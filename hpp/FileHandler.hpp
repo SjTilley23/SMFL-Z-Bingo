@@ -18,5 +18,6 @@ class FileHandler {
         void WriteToFile(std::string fileToWriteTo, std::string whatToWrite);   // Writes a string to a new line in an open file
         void ClearTheVec();                                                     // Clears everything out of the vector
         std::string GetVecByIndex(int Index);                                   // Gets a string in the vec by it's index ("line") number
+        int GetSizeOfVec();                                                     // Returns the size of the vector
 };
 #endif // __FILEHANDLER_HPP_INCLUDED__ 
