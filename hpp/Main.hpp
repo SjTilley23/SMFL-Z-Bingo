@@ -12,10 +12,10 @@
 
 class main {
     private:
-        // std::vector<ButtonHandler> buttonVector;
+        int currentScreen = 0;    
+
     public:
-        // std::vector<ButtonHandler> GetButtonVector();
-        // void AddToButtonVector(ButtonHandler ButtonHandler);
+        //void DrawMainScreen();
 };
 
 

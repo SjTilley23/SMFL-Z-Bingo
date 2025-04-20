@@ -16,12 +16,13 @@ class RandomButtons {
         const int height;                   // Unchangeable height of the button
         const int x;                        // Unchangeable x coord value of the button
         const int y;                        // Unchangeable y coord value of the button
-        sf::ConvexShape buttonRect;         // Button's shape for use to get .globalRect()
+        const int uniqueIdentifier;         // Unique identifier for the button
+        sf::ConvexShape buttonShape;        // Button's shape for use to get .globalRect()
 
     public:
         RandomButtons(Visuals& visuals, int widthi, int heighti, int xi, 
-            int yi); // ButtonHandler's non-default constructor
-        std::pair<std::string, std::string> IsPressed(int uniqueIdentifier);
+            int yi, int uniqueIdentifier); // ButtonHandler's non-default constructor
+        std::pair<std::string, std::string> IsPressed();
 };
 
 // class BackButtons {

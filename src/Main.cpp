@@ -3,16 +3,15 @@
 using namespace std;
 
 
-// vector<ButtonHandler> main::GetButtonVector() {
-//     return buttonVector;
+// void main::DrawMainScreen() {
+
+//     // Draw each button at the appropriate spot
 // }
 
-// void main::AddToButtonVector(ButtonHandler buttonHandler) {
-//     buttonVector.push_back(buttonHandler);
-// }
+
+
 
 int main() {
-    
     sf::Vector2f mouseVec2f;
 
     int width = 400, height = 600;
@@ -52,20 +51,12 @@ int main() {
 
         window.clear(sf::Color(220,220,220));   // Clear everything drawn from last frame
 
-        RandomButtons randomMapButton(visuals, 100, 20, 10, 10);
+        // switch (curentPage) {
+        //     case 0:
 
-        // ButtonHandler buttonHandler;
-        // Button button(10, 10, 200, 200, "Back");
 
-        // buttonHandler.AddButtonToVector(button);
-
-        // for (Button button : buttonHandler.buttonVector) {
-        //     ConvexShape convexShape = visuals.DrawButton(button.x, button.y, button.width, button.height);
-
-        //     if (convexShape.contains(mouseVec2f)) {
-        //         button.ispressed;
-        //     }
         // }
+        RandomButtons randomMapButton(visuals, 100, 20, 10, 10, 0);
 
         window.display();
     }

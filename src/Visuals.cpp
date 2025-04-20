@@ -1,18 +1,20 @@
 #include "Visuals.hpp"
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/System/String.hpp>
+#include <SFML/System/Vector2.hpp>
 
 // Constructor that passes in and sets just a window reference
 Visuals::Visuals(sf::RenderWindow& window)
     : window(window) {}
-
-
     
 // Constructor that passes in and sets a window reference, a width, and a height
 Visuals::Visuals(sf::RenderWindow& window, uint32_t widthi, uint32_t heighti)
-    : window(window), width(widthi), height(heighti) {}
+    : window(window), width(widthi), height(heighti), font("txt/FreeSerif.ttf") {}
 
 
 
-sf::ConvexShape Visuals::DrawButton(float position_x, float position_y, float width, float height) {
+sf::ConvexShape Visuals::DrawButton(float position_x, float position_y, float width, float height, std::string texti) {
     
     sf::ConvexShape button;    // Empty Convex Shape Object
     sf::Texture texture;       // Empty Texture Object
@@ -35,12 +37,18 @@ sf::ConvexShape Visuals::DrawButton(float position_x, float position_y, float wi
     button.setOutlineColor(sf::Color(192,192,192));  // Sets the outlines color to a light grey
     button.setOutlineThickness(2);                   // Sets the outlines thickness in pixels to 2
 
+    sf::Text text(font);
+    text.setString(texti);
+    text.setCharacterSize(height - 6);
+    text.setFillColor(sf::Color::Black);
+    text.setPosition(button.getPosition());
 
     static_cast<void>(texture.loadFromFile( // Opens a texture to our texture object
         "textures/ButtonGradient.png"));
     texture.setSmooth(true);      // Smooths the texture so the pixels aren't as visible
     button.setTexture(&texture);  // Sets the texture of the button to a reference to our texture
     window.draw(button);          // Draws the button into the window
+    window.draw(text);
 
     return button; // Returns our ConvexShape object, button
 }
