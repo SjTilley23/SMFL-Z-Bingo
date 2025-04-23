@@ -17,11 +17,14 @@ class RandomButtons {
         const int x;                        // Unchangeable x coord value of the button
         const int y;                        // Unchangeable y coord value of the button
         const int uniqueIdentifier;         // Unique identifier for the button
+        const int y_offset;                 // Button's text y offset
+        const std::string text;             // Text written on the button
+        const int fontSize;                 // Size of the button's text
         sf::ConvexShape buttonShape;        // Button's shape for use to get .globalRect()
 
     public:
         RandomButtons(Visuals& visuals, int widthi, int heighti, int xi, 
-            int yi, int uniqueIdentifier); // ButtonHandler's non-default constructor
+            int yi, int uniqueIdentifier, std::string texti, int y_offseti, int fontSizei); // ButtonHandler's non-default constructor
         std::pair<std::string, std::string> IsPressed();
 };
 

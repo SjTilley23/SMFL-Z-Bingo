@@ -3,9 +3,10 @@
 using namespace std;
 
 RandomButtons::RandomButtons(Visuals& visuals, int widthi, int heighti, // Constructor that sets every class variable
-    int xi, int yi, int uniqueIdentifier_) : visuals(visuals), 
-    width(widthi), height(heighti), x(xi), y(yi), uniqueIdentifier(uniqueIdentifier_) {
-        this->buttonShape = visuals.DrawButton(x, y, width, height, "asdfasdf");
+    int xi, int yi, int uniqueIdentifier_, string texti, int y_offseti, int fontSizei) : visuals(visuals), 
+    width(widthi), height(heighti), x(xi), y(yi), uniqueIdentifier(uniqueIdentifier_), text(texti), 
+    y_offset(y_offseti), fontSize(fontSizei) {
+        this->buttonShape = visuals.DrawButton(x, y, width, height, text, y_offset, fontSize);
     }
 
 

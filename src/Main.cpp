@@ -56,7 +56,8 @@ int main() {
 
 
         // }
-        RandomButtons randomMapButton(visuals, 100, 20, 10, 10, 0);
+        RandomButtons randomMapButton(visuals, 100, 20, 150,
+             100, 0,"Random Map", 3, 14);
 
         window.display();
     }
