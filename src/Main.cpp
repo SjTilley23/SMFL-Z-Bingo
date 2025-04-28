@@ -1,5 +1,6 @@
 #include "Main.hpp"
 #include "ButtonHandler.hpp"
+#include <string>
 
 using namespace std;
 
@@ -38,7 +39,13 @@ int main::getCurrentScreen() {
     return currentScreen;
 }
 
+void main::setMapCPair(pair<string, string> mapCPair) {
+    mapChallengePair = mapCPair;
+}
 
+pair<string, string> main::getMapCPair() {
+    return mapChallengePair;
+}
 
 
 
@@ -62,16 +69,37 @@ int main() {
 
         // Every loop we check for an event using a while loop incase there are multiple.
         while (const auto event = window.pollEvent()) {   
+
+
+            /*This is the handling of the events system. This section handles everything to do 
+            with the user interacting with the program. Everything this program should do
+            will generate an event that can be read here. This mostly consists of button
+            clicks but also includes the bingo board and closing a window.*/
             
+            // Closes the window if the event closed event is invoked
             if (event->is<sf::Event::Closed>()) {   // If the event is a close event
                 window.close();                     // Close the window
-
             }
 
+
+            // Detects for mouse clicks and then checks if it's a left click. if it is
+            // It checks everything that could be clicked on
             if (event->is<sf::Event::MouseButtonPressed>()) {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 
+                    // Gets the vector pos of the mouse at the time of the click
                     mouseVec2f = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
+
+                    // Checks if the mouse clicked on any buttons
+                    for (int x = 0; x < mainObj.getRBVSize(); x++) {
+                        RandomButtons tempButObj = mainObj.getFromRBV(x);
+                        if (tempButObj.Contains(mouseVec2f)) {
+                            mainObj.setMapCPair(tempButObj.IsPressed());
+                        }
+                    }
+
+
+
                 }
             }
 
@@ -80,7 +108,7 @@ int main() {
 
         }
 
-        
+        mainObj.clearRBV();
         window.clear(sf::Color(220,220,220));
         /* Clears the entire window of everything drawn from last frame. 
         This is one of two sections where the program should go. This section is
@@ -117,6 +145,9 @@ int main() {
                 RandomButtons randomBothButton(visuals, 250, 20, 350,
                      55, 2, "Randomize Both", 3, 14);
                 mainObj.addToRBV(randomBothButton);
+
+                visuals.WriteText(mainObj.getMapCPair().first, 10, 10, 22);
+                visuals.WriteText(mainObj.getMapCPair().second, 10, 37, 22);
 
 
 

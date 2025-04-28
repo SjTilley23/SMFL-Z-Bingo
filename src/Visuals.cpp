@@ -79,3 +79,15 @@ sf::ConvexShape Visuals::setButtonVertices(float position_x, float position_y, f
 
     return buttonShape;
 } // End of Function
+
+void Visuals::WriteText(std::string textToWrite, float position_x, float position_y, int fontSize) {
+    
+    sf::Text text(font);
+    text.setFillColor(sf::Color::Black);
+    text.setCharacterSize(fontSize);
+    text.setString(textToWrite);
+    sf::Vector2 textPosVec(position_x, position_y);
+    text.setPosition(textPosVec);
+    window.draw(text);
+}
+

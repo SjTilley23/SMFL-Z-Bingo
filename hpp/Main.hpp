@@ -1,6 +1,7 @@
 #ifndef __MAIN_HPP_INCLUDED__
 #define __MAIN_HPP_INCLUDED__
 
+#include <utility>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -30,14 +31,18 @@ class main {
     private:
          std::vector<RandomButtons> randButVec;
          int currentScreen = 1;
+         std::pair<std::string, std::string> mapChallengePair;
 
     public:
+        main(std::pair<std::string, std::string> mapChallengePairi = {"N/A", "N/A"}): mapChallengePair(mapChallengePairi) {};
         void addToRBV(RandomButtons buttonToAdd);
         int getRBVSize();
         RandomButtons getFromRBV(int index);
         void clearRBV();
         int getCurrentScreen();
         void setCurrentScreen(int screenNumber);
+        void setMapCPair(std::pair<std::string, std::string> mapCPair);
+        std::pair<std::string, std::string> getMapCPair();
 };
 
 

@@ -2,6 +2,8 @@
 #define __BUTTONHANDLER_HPP_INCLUDED__
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/ConvexShape.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -31,6 +33,7 @@ class RandomButtons {
         RandomButtons(Visuals& visuals, int widthi, int heighti, int xi, 
             int yi, int uniqueIdentifier, std::string texti, int y_offseti, int fontSizei); // ButtonHandler's non-default constructor
         std::pair<std::string, std::string> IsPressed();
+        bool Contains(sf::Vector2f mouseVec2f);
 };
 
 // class BackButtons {

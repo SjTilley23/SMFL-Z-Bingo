@@ -1,4 +1,5 @@
 #include "ButtonHandler.hpp"
+#include <SFML/System/Vector2.hpp>
 
 using namespace std;
 
@@ -8,6 +9,11 @@ RandomButtons::RandomButtons(Visuals& visuals, int widthi, int heighti, // Const
     y_offset(y_offseti), fontSize(fontSizei) {
         this->buttonShape = visuals.DrawButton(x, y, width, height, text, y_offset, fontSize);
     }
+
+
+bool RandomButtons::Contains(sf::Vector2f mouseVec2f) {
+    return buttonShape.getGlobalBounds().contains(mouseVec2f);
+}
 
 
 // generates a random map, challenge, or both depending on the input
