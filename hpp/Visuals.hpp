@@ -22,5 +22,6 @@ class Visuals {
         sf::ConvexShape DrawButton(float position_x, float position_y, float width, 
             float height, std::string text, int y_offset, int fontSize); // Draws a button on screen and returns the convex shape of it
         void WriteText(std::string textToWrite, float position_x, float position_y, int fontSize);
+        std::string TextWrapConverter(std::string textToConvert);
 };
 #endif // __GRAPHICS_HPP_INCLUDED__

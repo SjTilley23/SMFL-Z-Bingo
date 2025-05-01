@@ -1,6 +1,7 @@
 #ifndef __MAIN_HPP_INCLUDED__
 #define __MAIN_HPP_INCLUDED__
 
+#include <tuple>
 #include <utility>
 #include <vector>
 #include <string>
@@ -10,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "ButtonHandler.hpp"
-
+#include <sstream>
 
 /*
 This program uses a switch/case statement to decide which screen to
@@ -31,18 +32,19 @@ class main {
     private:
          std::vector<RandomButtons> randButVec;
          int currentScreen = 1;
-         std::pair<std::string, std::string> mapChallengePair;
+         std::tuple<std::string, std::string, std::string> mapChallengeDescTuple;
 
     public:
-        main(std::pair<std::string, std::string> mapChallengePairi = {"N/A", "N/A"}): mapChallengePair(mapChallengePairi) {};
+        main(std::tuple<std::string, std::string, std::string> mapChallengeDescTuplei = 
+            {"N/A", "N/A", "N/A"}): mapChallengeDescTuple(mapChallengeDescTuplei) {};
         void addToRBV(RandomButtons buttonToAdd);
         int getRBVSize();
         RandomButtons getFromRBV(int index);
         void clearRBV();
         int getCurrentScreen();
         void setCurrentScreen(int screenNumber);
-        void setMapCPair(std::pair<std::string, std::string> mapCPair);
-        std::pair<std::string, std::string> getMapCPair();
+        void setMapCDTuple(std::tuple<std::string, std::string, std::string> mapCPair);
+        std::tuple<std::string, std::string, std::string> getMapCDTuple();
 };
 
 

@@ -5,6 +5,11 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/String.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <istream>
+#include <iterator>
+#include <sstream>
+#include <string>
+#include <vector>
 
 // Constructor that passes in and sets just a window reference
 Visuals::Visuals(sf::RenderWindow& window)
@@ -85,9 +90,53 @@ void Visuals::WriteText(std::string textToWrite, float position_x, float positio
     sf::Text text(font);
     text.setFillColor(sf::Color::Black);
     text.setCharacterSize(fontSize);
-    text.setString(textToWrite);
     sf::Vector2 textPosVec(position_x, position_y);
     text.setPosition(textPosVec);
-    window.draw(text);
+
+
+    std::string tmpText;
+    std::string tmpText2;
+
+    std::istringstream iss(textToWrite); // Turn text into a string stream
+    std::vector<std::string> splitStringVec{std::istream_iterator<std::string>{iss},
+     std::istream_iterator<std::string>{}}; // Put text into a vector
+
+    // for each word in the vector
+    for (std::string word : splitStringVec) {
+
+        tmpText.append(" ");    // Append a space
+        tmpText.append(word); // and the word
+        text.setString(tmpText);  // Set the text object string to our string
+
+        // If the text would go outside our window
+        if (text.getGlobalBounds().size.x + position_x >= window.getSize().x) {
+
+            text.setString(tmpText2); // Set the text to our previous string
+            window.draw(text); // Draw our text on screen with the current variables
+
+            // Concatenate the remaining vector into a single string
+            for (std::string word2 : splitStringVec) {
+                tmpText.append(word);
+            }
+
+            position_y += fontSize + 5; // Change the y position for a new line
+
+            // Call the function again to write a new line
+            WriteText(tmpText, position_x, position_y, fontSize);
+            break; // Break out of the for loop
+          
+            
+        } else if (splitStringVec.empty())  {
+            text.setString(tmpText2);
+            window.draw(text);
+            break; // if our vector is empty break out of the loop
+        
+        } else {
+
+            tmpText2.append(" ");     // Append a space to out backup string
+            tmpText2.append(word);  // Append the word to our backup string
+            word.erase();               // removes the word from our vector
+        }
+    }
 }
 

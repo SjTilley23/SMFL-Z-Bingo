@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include "Visuals.hpp"
+#include <tuple>
 #include "FileHandler.hpp"
 
 
@@ -32,21 +33,8 @@ class RandomButtons {
     public:
         RandomButtons(Visuals& visuals, int widthi, int heighti, int xi, 
             int yi, int uniqueIdentifier, std::string texti, int y_offseti, int fontSizei); // ButtonHandler's non-default constructor
-        std::pair<std::string, std::string> IsPressed();
+        std::tuple<std::string, std::string, std::string> IsPressed();
         bool Contains(sf::Vector2f mouseVec2f);
 };
-
-// class BackButtons {
-
-//     private:
-//     const int width;                    // Unchangeable width of the button
-//     const int height;                   // Unchangeable height of the button
-//     const int x;                        // Unchangeable x coord value of the button
-//     const int y;                        // Unchangeable y coord value of the button
-//     sf::ConvexShape buttonRect;         // Button's shape for use to get .globalRect()
-
-
-// };
-
 
 #endif // __BUTTONHANDLER_HPP_INCLUDED__ 

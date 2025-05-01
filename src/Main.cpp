@@ -1,5 +1,6 @@
 #include "Main.hpp"
 #include "ButtonHandler.hpp"
+#include "FileHandler.hpp"
 #include <string>
 
 using namespace std;
@@ -39,12 +40,12 @@ int main::getCurrentScreen() {
     return currentScreen;
 }
 
-void main::setMapCPair(pair<string, string> mapCPair) {
-    mapChallengePair = mapCPair;
+void main::setMapCDTuple(tuple<string, string, string> mapCDTuple) {
+    mapChallengeDescTuple = mapCDTuple;
 }
 
-pair<string, string> main::getMapCPair() {
-    return mapChallengePair;
+tuple<string, string, string> main::getMapCDTuple() {
+    return mapChallengeDescTuple;
 }
 
 
@@ -94,7 +95,7 @@ int main() {
                     for (int x = 0; x < mainObj.getRBVSize(); x++) {
                         RandomButtons tempButObj = mainObj.getFromRBV(x);
                         if (tempButObj.Contains(mouseVec2f)) {
-                            mainObj.setMapCPair(tempButObj.IsPressed());
+                            mainObj.setMapCDTuple(tempButObj.IsPressed());
                         }
                     }
 
@@ -128,6 +129,10 @@ int main() {
 
             // Case for the starting screen
             case 0:
+
+                
+
+
                 break;
             
             // Case for the main screen
@@ -146,11 +151,9 @@ int main() {
                      55, 2, "Randomize Both", 3, 14);
                 mainObj.addToRBV(randomBothButton);
 
-                visuals.WriteText(mainObj.getMapCPair().first, 10, 10, 22);
-                visuals.WriteText(mainObj.getMapCPair().second, 10, 37, 22);
-
-
-
+                visuals.WriteText(get<0>(mainObj.getMapCDTuple()), 10, 10, 22);
+                visuals.WriteText(get<1>(mainObj.getMapCDTuple()), 10, 37, 22);
+                visuals.WriteText(get<2>(mainObj.getMapCDTuple()), 10, 75, 22);
 
                 break; 
 

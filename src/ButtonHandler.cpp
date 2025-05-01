@@ -1,5 +1,7 @@
 #include "ButtonHandler.hpp"
 #include <SFML/System/Vector2.hpp>
+#include <string>
+#include <tuple>
 
 using namespace std;
 
@@ -17,39 +19,50 @@ bool RandomButtons::Contains(sf::Vector2f mouseVec2f) {
 
 
 // generates a random map, challenge, or both depending on the input
-pair<string, string> RandomButtons::IsPressed() {
+tuple<string, string, string> RandomButtons::IsPressed() {
     FileHandler fileHandler;
     int randomIndex;
-    pair<string, string> returnPair;
+    string firstSpot;
+    string secondSpot;
+    string thirdSpot;
 
+
+    // Determining what Map goes into the tuple
     switch (uniqueIdentifier) {
         case 0:
         case 2:
             fileHandler.ReadFromTxtFileToVec("txt/Maps.txt");
             randomIndex = rand() % fileHandler.GetSizeOfVec();
-            returnPair.first = fileHandler.GetVecByIndex(randomIndex);
+            firstSpot = fileHandler.GetVecByIndex(randomIndex);
             fileHandler.ClearTheVec();
             break;
         default:
-            returnPair.first = "N";
+            firstSpot = "N";
             break;
 
     }
 
+    // Determining what Challenge goes into the tuple
     switch (uniqueIdentifier) {
         case 1:
         case 2:
             fileHandler.ReadFromTxtFileToVec("txt/Challenges.txt");
             randomIndex = rand() % fileHandler.GetSizeOfVec();
-            returnPair.second = fileHandler.GetVecByIndex(randomIndex);
+            secondSpot = fileHandler.GetVecByIndex(randomIndex);
             fileHandler.ClearTheVec();
             break;
         default:
-            returnPair.second = "N";
+            secondSpot = "N";
             break;
     }
 
-    return returnPair;
+    // Finding the matching Description
+    fileHandler.ReadFromTxtFileToVec("txt/Descriptions.txt");
+    thirdSpot = fileHandler.GetVecByIndex(randomIndex);
+
+    // Making and returning the 3 tuple
+    tuple<string, string, string> returnTuple = make_tuple(firstSpot, secondSpot, thirdSpot);
+    return returnTuple;
 }
 
     
