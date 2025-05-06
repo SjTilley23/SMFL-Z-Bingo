@@ -110,7 +110,7 @@ void Visuals::WriteText(std::string textToWrite, float position_x, float positio
         text.setString(tmpText2);   // Set the string fo our text object to our temprorary string
 
         // If the next word wouldgo outside the window
-        if (text.getGlobalBounds().size.x >= window.getSize().x + position_x) {
+        if (text.getGlobalBounds().size.x + position_x >= (window.getSize().x)) {
             tmpText.append("\n"); // Add a new lines
             tmpText2.clear();       // Clear the tmpText2 string
         } else {

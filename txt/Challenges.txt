@@ -1,5 +1,10 @@
-challenge 1
-challenge 2
-challenge 3
-challenge 4
-challenge 5
+123 Challenge
+Spawnroom
+Easter Eggs
+Pistols Only
+Starting Room Guns Only
+No Pack Round 20
+No Jugg
+No Perks Round 15
+Brightness 0
+Only Headshots
