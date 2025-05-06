@@ -87,56 +87,39 @@ sf::ConvexShape Visuals::setButtonVertices(float position_x, float position_y, f
 
 void Visuals::WriteText(std::string textToWrite, float position_x, float position_y, int fontSize) {
     
-    sf::Text text(font);
-    text.setFillColor(sf::Color::Black);
-    text.setCharacterSize(fontSize);
-    sf::Vector2 textPosVec(position_x, position_y);
-    text.setPosition(textPosVec);
+    sf::Text text(font);                                   // Create new text object with our class font
+    text.setFillColor(sf::Color::Black);            // Set the text color to black
+    text.setCharacterSize(fontSize);                 // Set the font size to our argument size
+    sf::Vector2 textPosVec(position_x, position_y);   // Create new position vector with our arguments
+    text.setPosition(textPosVec);                          // Set the text objects position to our vector
 
+    std::string tmpText;  // Temporary string to store the string we want to print
+    std::string tmpText2; // Temporary string to test the length if the next word is added
 
-    std::string tmpText;
-    std::string tmpText2;
+    std::stringstream ss(textToWrite);                        // Turn text into a string stream
+    std::istream_iterator<std::string> begin(ss);              // create istringstream from stringstream
+    std::istream_iterator<std::string> end;                        // create empty i string stream
+    std::vector<std::string> lineVector(begin, end);   // add string streams to vector starting with the first and ending with the null
 
-    std::istringstream iss(textToWrite); // Turn text into a string stream
-    std::vector<std::string> splitStringVec{std::istream_iterator<std::string>{iss},
-     std::istream_iterator<std::string>{}}; // Put text into a vector
+    // for each string in the vector
+    for (std::string word : lineVector) {
 
-    // for each word in the vector
-    for (std::string word : splitStringVec) {
+        tmpText2.append(word);  // Append the word to our string for use in checking size
+        tmpText2.append(" ");     // Append a space afterwards so the first word doesn't have a space behind it
 
-        tmpText.append(" ");    // Append a space
-        tmpText.append(word); // and the word
-        text.setString(tmpText);  // Set the text object string to our string
+        text.setString(tmpText2);   // Set the string fo our text object to our temprorary string
 
-        // If the text would go outside our window
-        if (text.getGlobalBounds().size.x + position_x >= window.getSize().x) {
-
-            text.setString(tmpText2); // Set the text to our previous string
-            window.draw(text); // Draw our text on screen with the current variables
-
-            // Concatenate the remaining vector into a single string
-            for (std::string word2 : splitStringVec) {
-                tmpText.append(word);
-            }
-
-            position_y += fontSize + 5; // Change the y position for a new line
-
-            // Call the function again to write a new line
-            WriteText(tmpText, position_x, position_y, fontSize);
-            break; // Break out of the for loop
-          
-            
-        } else if (splitStringVec.empty())  {
-            text.setString(tmpText2);
-            window.draw(text);
-            break; // if our vector is empty break out of the loop
-        
+        // If the next word wouldgo outside the window
+        if (text.getGlobalBounds().size.x >= window.getSize().x + position_x) {
+            tmpText.append("\n"); // Add a new lines
+            tmpText2.clear();       // Clear the tmpText2 string
         } else {
-
-            tmpText2.append(" ");     // Append a space to out backup string
-            tmpText2.append(word);  // Append the word to our backup string
-            word.erase();               // removes the word from our vector
+            tmpText.append(word); // Append the word to the string
+            tmpText.append(" ");    // Append a space to the string 
         }
     }
+
+    text.setString(tmpText);    // Set the string to our newly created string
+    window.draw(text);// Draw the text onto the screen
 }
 
