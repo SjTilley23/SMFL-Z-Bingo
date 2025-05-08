@@ -5,3 +5,5 @@ You can click on spaces to mark or unmark them and the game will award you a win
 allowing you to see how many times you've won at zombies bingo. Through the program you can edit everything that you want, maps, challenges, perks, descriptions, rules, and even
 the bingo board challenges. Allowing for you to have ultimate customization of your zombies bingo experience. The program comes with many preloaded maps, challenges, etc, however
 you may remove or add them as you wish.
+
+/* Attention Professor McCullen! almost none of this is implemented yet! This is a project i'd like to work on over the summer for my own personal enjoyment! This is just how my readme looks on my personal github page*/
