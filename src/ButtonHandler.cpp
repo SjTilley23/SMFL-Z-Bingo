@@ -50,15 +50,16 @@ tuple<string, string, string> RandomButtons::IsPressed() {
             randomIndex = rand() % fileHandler.GetSizeOfVec();
             secondSpot = fileHandler.GetVecByIndex(randomIndex);
             fileHandler.ClearTheVec();
+
+            // Finding the matching Description
+            fileHandler.ReadFromTxtFileToVec("txt/Descriptions.txt");
+            thirdSpot = fileHandler.GetVecByIndex(randomIndex);
             break;
         default:
             secondSpot = "N";
+            thirdSpot = "N";
             break;
     }
-
-    // Finding the matching Description
-    fileHandler.ReadFromTxtFileToVec("txt/Descriptions.txt");
-    thirdSpot = fileHandler.GetVecByIndex(randomIndex);
 
     // Making and returning the 3 tuple
     tuple<string, string, string> returnTuple = make_tuple(firstSpot, secondSpot, thirdSpot);

@@ -41,7 +41,21 @@ int main::getCurrentScreen() {
 }
 
 void main::setMapCDTuple(tuple<string, string, string> mapCDTuple) {
-    mapChallengeDescTuple = mapCDTuple;
+
+    // Sets the main classes tuple to decide what to render.
+    // Checks if the randomization returns an N string and
+    // Doesn't change what is displayed if it does
+    if (get<0>(mapCDTuple) != "N") {
+        get<0>(mapChallengeDescTuple) = get<0>(mapCDTuple);
+    }
+
+    if (get<1>(mapCDTuple) != "N") {
+        get<1>(mapChallengeDescTuple) = get<1>(mapCDTuple);
+    }
+
+    if (get<2>(mapCDTuple) != "N") {
+        get<2>(mapChallengeDescTuple) = get<2>(mapCDTuple);
+    }
 }
 
 tuple<string, string, string> main::getMapCDTuple() {
